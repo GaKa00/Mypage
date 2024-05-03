@@ -1,74 +1,21 @@
-function About() {
+import Background from '../assets/PORTFOLIO.gif'
+
+const About = () => {
   return (
-    <section className="container mx-auto">
-      <article className="">
-       <h1>My Name is Gabriel, Nice to meet you</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-          iste? Omnis labore maiores, esse fuga dolorum doloremque quae
-          inventore nesciunt?
-        </p>
+    <div className="relative h-screen flex justify-center items-center p-6">
+      <main className="relative z-10 w-full max-w-11/12 h-full flex flex-col justify-start items-start border-2 border-black sm:p-0 sm:m-3 overflow-hidden">
+        <div className="relative w-full h-full">
+          <img
+            src={Background}
+            alt=""
+            className="w-full h-full object-cover pointer-events-none"
+          />
 
-        <img src="" alt="" />
-      </article>
-
-      <main>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio sequi
-        excepturi quos velit sint nemo perferendis. Corrupti eos excepturi ipsum
-        cum neque ex voluptatibus voluptates, quae laudantium tempora harum hic
-        amet aperiam modi nisi assumenda deserunt quo dolorem labore est
-        consequuntur similique eveniet aliquam aspernatur. Id temporibus nisi
-        exercitationem veniam!
+          {/* add large experience list in right side */}
+        </div>
       </main>
-
-      <TechStack />
-    </section>
-  );
-}
-
-export default About;
-
-import AzureImage from "../assets/AZURE.png";
-import CSSImage from "../assets/CSS.png";
-import GITImage from "../assets/GIT.png";
-import HTMLImage from "../assets/HTML.png";
-import NodeImage from "../assets/NODE.png";
-import ReactImage from "../assets/REACT.png";
-import TailwindImage from "../assets/TAILWIND.png";
-import VueImage from "../assets/VUE.png";
-
-function TechStack() {
-  const images = [
-    { Name: "Azure", Img: AzureImage },
-    { Name: "CSS", Img: CSSImage },
-    { Name: "GIT", Img: GITImage },
-    { Name: "HTML", Img: HTMLImage },
-    { Name: "Node", Img: NodeImage },
-    { Name: "React", Img: ReactImage },
-    {
-      Name: "Tailwind",
-      Img: TailwindImage,
-    },
-    { Name: "Vue", Img: VueImage },
-  ];
-
-  return (
-    <div className="techstack-container bg-violet-500 flex flex-col items-center rounded-lg">
-      <h1 className="text-3xl font-bold mb-4">My Techstack</h1>
-      <div className="flex flex-wrap justify-center">
-        {images.map((image, index) => (
-          <div
-            className="card mx-4 my-4 flex flex-col items-center"
-            key={index}
-            style={{ width: "calc(100% / 4 - 2rem)" }}
-          >
-            <div className="image-container bg-gray-500 w-32 h-32 flex items-center justify-center rounded-md">
-              <img className="w-24 h-24" src={image.Img} alt={image.Name} />
-            </div>
-            
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
+
+export default About
