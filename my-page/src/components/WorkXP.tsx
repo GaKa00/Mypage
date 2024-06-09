@@ -1,10 +1,14 @@
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Background from "../assets/PORTFOLIO.gif";
 import { useState } from "react";
 const WorkXP = () => {
 
    const [showDetails, setShowDetails] = useState(false);
+   const location = useLocation();
+
+   const isActive = (path) => location.pathname === path;
+
 
    const handleMouseEnter = () => {
      setShowDetails(true);
@@ -23,30 +27,47 @@ const WorkXP = () => {
             className="w-full h-full object-cover pointer-events-none"
           />
           <section className="absolute top-0 left-0 m-8 gap-6">
+            <Link to="/">
+
             <h1 className="text-3xl">Gabriel Kassarp</h1>
             <h3 className="text-lg">Fullstack Developer</h3>
+            </Link>
             <ul className="mt-40 space-y-5 flex flex-col">
               <Link
-                className="font-bold hover:bg-white p-1 rounded-lg opacity-75"
-                to={"/projects"}
+                className={`font-bold  p-1 rounded-lg opacity-75 ${
+                  isActive("/projects")
+                    ? "bg-black text-white"
+                    : "hover:bg-white"
+                }`}
+                to="/projects"
               >
                 Projects
               </Link>
               <Link
-                className="font-bold hover:bg-white p-1 rounded-lg opacity-75"
-                to={"/experience"}
+                className={`font-bold p-1 rounded-lg opacity-75 ${
+                  isActive("/experience")
+                    ? "bg-black text-white"
+                    : " hover:bg-white"
+                }`}
+                to="/experience"
               >
                 Experience
               </Link>
               <Link
-                className="font-bold hover:bg-white p-1 rounded-lg opacity-75"
-                to={"/about"}
+                className={`font-bold p-1 rounded-lg opacity-75 ${
+                  isActive("/about") ? "bg-black text-white" : " hover:bg-white"
+                }`}
+                to="/about"
               >
                 About Me
               </Link>
               <Link
-                className="font-bold hover:bg-white p-1 rounded-lg opacity-75"
-                to={"/contact"}
+                className={`font-bold rounded-lg opacity-75 ${
+                  isActive("/contact")
+                    ? "bg-black text-white"
+                    : " hover:bg-white p-1"
+                }`}
+                to="/contact"
               >
                 Contact
               </Link>

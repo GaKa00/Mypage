@@ -1,7 +1,13 @@
 import WARHAMMERIMAGE from "../assets/Warhammer.png"
 
 import Background from "../assets/PORTFOLIO.gif";
+import { Link, useLocation } from "react-router-dom";
 const Projects= () => {
+
+   const location = useLocation();
+
+   const isActive = (path) => location.pathname === path;
+
   return (
     <div className="relative h-screen flex justify-center items-center p-6">
       <main className="relative z-10 w-full max-w-11/12 h-full flex flex-col justify-start items-start border-2 border-black sm:p-0 sm:m-3 overflow-hidden">
@@ -11,116 +17,226 @@ const Projects= () => {
             alt=""
             className="w-full h-full object-cover pointer-events-none"
           />
+          <section className="absolute top-0 left-0 m-8 gap-6">
+            <Link to="/">
+            <h1 className="text-3xl">Gabriel Kassarp</h1>
+            <h3 className="text-lg">Fullstack Developer</h3>
+            </Link>
+            <ul className="mt-40 space-y-5 flex flex-col">
+              <Link
+                className={`font-bold  p-1 rounded-lg opacity-75 ${
+                  isActive("/projects")
+                    ? "bg-black text-white"
+                    : "hover:bg-white"
+                }`}
+                to="/projects"
+              >
+                Projects
+              </Link>
+              <Link
+                className={`font-bold p-1 rounded-lg opacity-75 ${
+                  isActive("/experience")
+                    ? "bg-black text-white"
+                    : " hover:bg-white"
+                }`}
+                to="/experience"
+              >
+                Experience
+              </Link>
+              <Link
+                className={`font-bold p-1 rounded-lg opacity-75 ${
+                  isActive("/about") ? "bg-black text-white" : " hover:bg-white"
+                }`}
+                to="/about"
+              >
+                About Me
+              </Link>
+              <Link
+                className={`font-bold rounded-lg opacity-75 ${
+                  isActive("/contact")
+                    ? "bg-black text-white"
+                    : " hover:bg-white p-1"
+                }`}
+                to="/contact"
+              >
+                Contact
+              </Link>
+            </ul>
+          </section>
 
-          {/* add large experience list in right side */}
+        <Positioner>
+          <Warhammer />
+          <Snapgram />
+          <Oasis />
+          <AccessAbility />
+        </Positioner>
         </div>
-        <Warhammer />
-        <ChasChallenge />
-        <Oasis />
       </main>
     </div>
   );
 };
 
+function Positioner({children}) {
+  return(
+    <div className="absolute flex flex-col gap-10 right-4 top-4">
+      {children}
+
+    </div>
+  )
+}
 
 
 
-
-function Warhammer() {
-    return (
-      <article className="max-w-sm rounded overflow-hidden shadow-lg bg-purple-500 shadow-black">
+const Warhammer = () => {
+  return (
+    <article className="relative max-w-xs rounded overflow-hidden ">
+      <div className="group relative">
         <img
-          className="w-full"
+          className="w-full h-full object-cover"
           src={WARHAMMERIMAGE}
-          alt="Sunset in the mountains"
+          alt="Warhammer Art"
         />
-        <p className="text-white m-1">Artist:Laxmonaut</p>
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2 text-center">
-            Warhammer Reading Companion
+        <div className="absolute inset-0 flex flex-col justify-between">
+          <div className="flex justify-center items-center bg-black bg-opacity-50 py-2">
+            <div className="font-bold text-xl text-center text-white">
+              Warhammer Reading Companion
+            </div>
           </div>
-          <p className="text-black text-base bg-slate-100 rounded-md text-center">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
+          <div className="flex flex-wrap justify-center items-center bg-black bg-opacity-50 py-2">
+            <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              #React
+            </span>
+            <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              #Node
+            </span>
+            <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              #Tailwind
+            </span>
+          </div>
         </div>
-        <div className="px-6 pt-4 pb-2">
-          <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            #React
-          </span>
-          <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            #Node
-          </span>
-          <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            #Tailwind
-          </span>
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 text-black text-base px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+          nihil.
+        
         </div>
-      </article>
-    );
-}
+      </div>
+    </article>
+  );
+};
 
-function ChasChallenge(){
-
-    return (
-      <article className="max-w-sm rounded overflow-hidden shadow-lg bg-purple-500 shadow-black">
+const Oasis = () => {
+  return (
+    <article className="relative max-w-xs rounded overflow-hidden">
+      <div className="group relative">
         <img
-          className="w-full"
-          src="/img/card-top.jpg"
-          alt="Sunset in the mountains"
+          className="w-full h-full object-cover"
+          src={WARHAMMERIMAGE}
+          alt="Warhammer Art"
         />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">Binge</div>
-          <p className="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
+        <div className="absolute inset-0 flex flex-col justify-between">
+          <div className="flex justify-center items-center bg-black bg-opacity-50 py-2">
+            <div className="font-bold text-xl text-center text-white">
+              Oasis
+            </div>
+          </div>
+          <div className="flex flex-wrap justify-center items-center bg-black bg-opacity-50 py-2">
+            <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              #React
+            </span>
+            <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              #Node
+            </span>
+            <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              #Tailwind
+            </span>
+          </div>
         </div>
-        <div className="px-6 pt-4 pb-2">
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            #React
-          </span>
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            #Tailwind
-          </span>
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            #winter
-          </span>
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 text-black text-base px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+          nihil.
         </div>
-      </article>
-    );
-}
+      </div>
+      
+    </article>
+  );
+};
 
-function Oasis(){
-
-    return (
-      <article className="max-w-sm rounded overflow-hidden shadow-lg">
+const Snapgram = () => {
+  return (
+    <article className="relative max-w-xs rounded overflow-hidden ">
+      <div className="group relative">
         <img
-          className="w-full"
-          src="/img/card-top.jpg"
-          alt="Sunset in the mountains"
+          className="w-full h-full object-cover"
+          src={WARHAMMERIMAGE}
+          alt="Warhammer Art"
         />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">Oasis</div>
-          <p className="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
+        <div className="absolute inset-0 flex flex-col justify-between">
+          <div className="flex justify-center items-center bg-black bg-opacity-50 py-2">
+            <div className="font-bold text-xl text-center text-white">
+             Snapgram
+            </div>
+          </div>
+          <div className="flex flex-wrap justify-center items-center bg-black bg-opacity-50 py-2">
+            <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              #React
+            </span>
+            <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              #Node
+            </span>
+            <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              #Tailwind
+            </span>
+          </div>
         </div>
-        <div className="px-6 pt-4 pb-2">
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            #photography
-          </span>
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            #travel
-          </span>
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            #winter
-          </span>
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 text-black text-base px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+          nihil.
         </div>
-      </article>
-    );
-}
+      </div>
+    
+    </article>
+  );
+};
+
+const AccessAbility = () => {
+  return (
+    <article className="relative max-w-xs rounded overflow-hidden ">
+      <div className="group relative">
+        <img
+          className="w-full h-full object-cover"
+          src={WARHAMMERIMAGE}
+          alt="Warhammer Art"
+        />
+        <div className="absolute inset-0 flex flex-col justify-between">
+          <div className="flex justify-center items-center bg-black bg-opacity-50 py-2">
+            <div className="font-bold text-xl text-center text-white">
+             Access-Ability
+            </div>
+          </div>
+          <div className="flex flex-wrap justify-center items-center bg-black bg-opacity-50 py-2">
+            <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              #React
+            </span>
+            <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              #Node
+            </span>
+            <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              #Tailwind
+            </span>
+          </div>
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 text-black text-base px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+          nihil.
+        </div>
+      </div>
+   
+    </article>
+  );
+};
+
 export default Projects
