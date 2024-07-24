@@ -2,15 +2,21 @@ import WARHAMMERIMAGE from "../assets/Warhammer.png"
 
 import Background from "../assets/PORTFOLIO.gif";
 import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import SwipeableCarousel from "../ui/Carousel";
+
+
 const Projects= () => {
 
+
+    //  const [isPhone, setisPhone] = useState(false);
    const location = useLocation();
 
    const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="relative h-screen flex justify-center items-center p-4 sm:p-6">
-      <main className="relative z-10 w-full max-w-11/12 h-full flex flex-col justify-start items-start border-2 border-black sm:p-0 sm:m-3 overflow-hidden">
+    <div className="relative h-screen flex justify-center items-center p-4 sm:p-6 ">
+      <main className="relative z-10 w-full max-w-11/12 h-full flex flex-col justify-start items-start border-2 border-black sm:p-0 sm:m-3 overflow-hidden ">
         <div className="relative w-full h-full flex flex-col">
           <img
             src={Background}
@@ -68,7 +74,7 @@ const Projects= () => {
 
           <Positioner>
             <Warhammer />
-            <Snapgram />
+
             <Oasis />
             <AccessAbility />
           </Positioner>
@@ -78,14 +84,37 @@ const Projects= () => {
   );
 };
 
-function Positioner({children}: {children: React.ReactNode}) {
+function Positioner({ children }: { children: React.ReactNode }) {
+  const [isPhone, setIsPhone] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsPhone(window.innerWidth < 600);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div className="absolute flex flex-col gap-10 right-4 top-4">
-      {children}
+    <div
+      className={`${
+        isPhone
+          ? "absolute flex flex-col gap-10 items-center  left-4 right-4 bottom-2 overflow-hidden max-h-100"
+          : "absolute flex flex-col gap-10 right-4 top-4"
+      }`}
+      style={{
+        bottom: isPhone ? "2rem" : "auto", // Ensure it is positioned correctly at the bottom for mobile
+      }}
+    >
+      {isPhone ? <SwipeableCarousel>{children}</SwipeableCarousel> : children}
     </div>
   );
 }
-
 
 
 
@@ -99,7 +128,7 @@ const Warhammer = () => {
           alt="Warhammer Art"
         />
         <div className="absolute inset-0 flex flex-col justify-between">
-          <div className="flex justify-center items-center bg-black bg-opacity-50 py-2">
+          <div className="flex justify-center items-center bg-black bg-opacity-50 py-2  ">
             <div className="font-bold text-xl text-center text-white">
               Warhammer Reading Companion
             </div>
@@ -116,18 +145,29 @@ const Warhammer = () => {
             </span>
           </div>
         </div>
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 text-black text-base px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil.
-        
-        </div>
+      
       </div>
     </article>
   );
 };
 
 const Oasis = () => {
+
+  const [isPhone, setIsPhone] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsPhone(window.innerWidth < 600);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <article className="relative max-w-xs rounded overflow-hidden">
       <div className="group relative">
@@ -137,12 +177,14 @@ const Oasis = () => {
           alt="Warhammer Art"
         />
         <div className="absolute inset-0 flex flex-col justify-between">
-          <div className="flex justify-center items-center bg-black bg-opacity-50 py-2">
+          {/* Copy below div for future  additions */}
+          <div className={ isPhone? "flex justify-center items-center bg-black bg-opacity-50 py-5 " :  
+            "flex justify-center items-center bg-black bg-opacity-50 py-2  "}>
             <div className="font-bold text-xl text-center text-white">
               Oasis
             </div>
           </div>
-          <div className="flex flex-wrap justify-center items-center bg-black bg-opacity-50 py-2">
+          <div className="flex flex-wrap justify-center items-center bg-black bg-opacity-50 py-2 ">
             <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
               #React
             </span>
@@ -154,54 +196,13 @@ const Oasis = () => {
             </span>
           </div>
         </div>
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 text-black text-base px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil.
-        </div>
+        
       </div>
-      
     </article>
   );
 };
 
-const Snapgram = () => {
-  return (
-    <article className="relative max-w-xs rounded overflow-hidden ">
-      <div className="group relative">
-        <img
-          className="w-full h-full object-cover"
-          src={WARHAMMERIMAGE}
-          alt="Warhammer Art"
-        />
-        <div className="absolute inset-0 flex flex-col justify-between">
-          <div className="flex justify-center items-center bg-black bg-opacity-50 py-2">
-            <div className="font-bold text-xl text-center text-white">
-             Snapgram
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-center items-center bg-black bg-opacity-50 py-2">
-            <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              #React
-            </span>
-            <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              #Node
-            </span>
-            <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              #Tailwind
-            </span>
-          </div>
-        </div>
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 text-black text-base px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil.
-        </div>
-      </div>
-    
-    </article>
-  );
-};
+
 
 const AccessAbility = () => {
   return (

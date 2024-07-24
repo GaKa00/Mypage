@@ -19,6 +19,7 @@ const WorkXP = () => {
    useEffect(() => {
      const handleResize = () => {
        setisPhone(window.innerWidth < 600); 
+       setShowDetails(true)
      };
 
      handleResize(); 
@@ -101,7 +102,7 @@ const WorkXP = () => {
 
            {showDetails && (
              <>
-               <h2 className="px-3 ">At the Swedish Parliament</h2>
+               <h2 className="px-3 text-center">At the Swedish Parliament</h2>
                <ul className="m-5">
                  <li>
                    Experience: Lorem ipsum dolor sit amet, consectetur
