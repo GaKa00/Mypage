@@ -66,14 +66,37 @@ const isActive = (path: string) => location.pathname === path;
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center border-black bg-slate-200  z-9">
             <h2 className="font-bold text-4xl">About me</h2>
 
-            <div className=" flex  gap-10">
+            <div className=" flex  gap-10 m-8">
               <div className="">
-                <h3>Hobbies</h3>
-                <p></p>
+                <h3 className="text-center">Hobbies</h3>
+                <p className="max-w-64">
+                  {" "}
+                  During the time which I do not code, I tend to frequent the
+                  gym. I am also a bit of a home cook, often experimenting which
+                  may lead to a varied result of delicious dinners, or dumpster
+                  fodder. I also practice juggling, as well as host my own
+                  Dungeons and Dragons campaign. I am a massive fantasy enjoyer
+                  with my favorite franshices including such as Warhammer 40K,
+                  The Witcher and Game of Thrones.{" "}
+                </p>
               </div>
 
               <div className="">
-                <h3>Qualities</h3>
+                <h3 className="text-center">Qualities</h3>
+                <p className="max-w-64">
+                  {" "}
+                  As a developer in training, my passion for coding is like a
+                  sponge, with a constant wish to prove and better myself. This
+                  is not to be mistaken for brazen rashness though, as my
+                  earlier positions at managemental roles has taught me
+                  discipline and the value of teamwork. I am not afraid to take
+                  risks, but attempt to remain well aware of my limits and seek
+                  out a more qualified opinion if such is the case.{" "}
+                </p>
+              </div>
+
+              <div className="">
+                <h3>Skillset</h3>
                 <p></p>
               </div>
             </div>
