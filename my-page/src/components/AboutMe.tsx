@@ -62,6 +62,22 @@ const isActive = (path: string) => location.pathname === path;
               </Link>
             </ul>
           </section>
+
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center border-black bg-slate-200  z-9">
+            <h2 className="font-bold text-4xl">About me</h2>
+
+            <div className=" flex  gap-10">
+              <div className="">
+                <h3>Hobbies</h3>
+                <p></p>
+              </div>
+
+              <div className="">
+                <h3>Qualities</h3>
+                <p></p>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </div>
