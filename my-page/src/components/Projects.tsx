@@ -1,22 +1,23 @@
-import WARHAMMERIMAGE from "../assets/Warhammer.png"
-
 import Background from "../assets/PORTFOLIO.gif";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import SwipeableCarousel from "../ui/Carousel";
+import React from "react";
 
+const Projects = () => {
+  // Track which project is expanded
+  const [expandedProject, setExpandedProject] = useState<string | null>(null);
 
-const Projects= () => {
+  // Handle project expansion/collapse
+  const toggleExpand = (projectId: string) => {
+    setExpandedProject((prev) => (prev === projectId ? null : projectId));
+  };
 
-
-    //  const [isPhone, setisPhone] = useState(false);
-   const location = useLocation();
-
-   const isActive = (path: string) => location.pathname === path;
+  const location = useLocation();
+  const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="relative h-screen flex justify-center items-center p-4 sm:p-6 ">
-      <main className="relative z-10 w-full max-w-11/12 h-full flex flex-col justify-start items-start border-2 border-black sm:p-0 sm:m-3 overflow-hidden ">
+    <div className="relative h-screen flex justify-center items-center p-4 sm:p-6">
+      <main className="relative z-10 w-full max-w-11/12 h-full flex flex-col justify-start items-start border-2 border-black sm:p-0 sm:m-3 overflow-hidden">
         <div className="relative w-full h-full flex flex-col">
           <img
             src={Background}
@@ -73,10 +74,18 @@ const Projects= () => {
           </section>
 
           <Positioner>
-            <Warhammer />
-
-            <Oasis />
-            <AccessAbility />
+            <Warhammer
+              isExpanded={expandedProject === "Warhammer"}
+              toggleExpand={() => toggleExpand("Warhammer")}
+            />
+            <Oasis
+              isExpanded={expandedProject === "Oasis"}
+              toggleExpand={() => toggleExpand("Oasis")}
+            />
+            <OasisCostumer
+              isExpanded={expandedProject === "OasisCustomer"}
+              toggleExpand={() => toggleExpand("OasisCustomer")}
+            />
           </Positioner>
         </div>
       </main>
@@ -104,142 +113,119 @@ function Positioner({ children }: { children: React.ReactNode }) {
     <div
       className={`${
         isPhone
-          ? "absolute flex flex-col gap-10 items-center  left-4 right-4 bottom-2 overflow-hidden max-h-100"
+          ? "absolute flex flex-col gap-4 items-center left-4 right-4 bottom-2 overflow-y-auto max-h-1/2"
           : "absolute flex flex-col gap-10 right-4 top-4"
       }`}
-      style={{
-        bottom: isPhone ? "2rem" : "auto", // Ensure it is positioned correctly at the bottom for mobile
-      }}
     >
-      {isPhone ? <SwipeableCarousel>{children}</SwipeableCarousel> : children}
+      {children}
     </div>
   );
 }
 
-
-
-const Warhammer = () => {
+const Warhammer = ({
+  isExpanded,
+  toggleExpand,
+}: {
+  isExpanded: boolean;
+  toggleExpand: () => void;
+}) => {
   return (
-    <article className="relative max-w-xs rounded overflow-hidden ">
-      <div className="group relative">
-        <img
-          className="w-full h-full object-cover"
-          src={WARHAMMERIMAGE}
-          alt="Warhammer Art"
-        />
-        <div className="absolute inset-0 flex flex-col justify-between">
-          <div className="flex justify-center items-center bg-black bg-opacity-50 py-2  ">
-            <div className="font-bold text-xl text-center text-white">
-              Warhammer Reading Companion
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-center items-center bg-black bg-opacity-50 py-2">
+    <div>
+      <h3 onClick={toggleExpand} className="font-bold text-xl cursor-pointer">
+        The Library
+      </h3>
+      {isExpanded && (
+        <div>
+          <div className="flex flex-wrap justify-center items-center bg-white bg-opacity-60 py-2 ">
             <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              #React
+              React
             </span>
             <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              #Node
+              Node
             </span>
-            <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              #Tailwind
+            <span className="inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              Chakra
             </span>
           </div>
+          <p></p>
+          <a>Link to project</a>
         </div>
-      
-      </div>
-    </article>
+      )}
+    </div>
   );
 };
 
-const Oasis = () => {
-
-  const [isPhone, setIsPhone] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsPhone(window.innerWidth < 600);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
+const Oasis = ({
+  isExpanded,
+  toggleExpand,
+}: {
+  isExpanded: boolean;
+  toggleExpand: () => void;
+}) => {
   return (
-    <article className="relative max-w-xs rounded overflow-hidden">
-      <div className="group relative">
-        <img
-          className="w-full h-full object-cover"
-          src={WARHAMMERIMAGE}
-          alt="Warhammer Art"
-        />
-        <div className="absolute inset-0 flex flex-col justify-between">
-          {/* Copy below div for future  additions */}
-          <div className={ isPhone? "flex justify-center items-center bg-black bg-opacity-50 py-5 " :  
-            "flex justify-center items-center bg-black bg-opacity-50 py-2  "}>
-            <div className="font-bold text-xl text-center text-white">
-              Oasis
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-center items-center bg-black bg-opacity-50 py-2 ">
+    <div>
+      <h3 onClick={toggleExpand} className="font-bold text-xl cursor-pointer">
+        The Wild Oasis
+      </h3>
+      {isExpanded && (
+        <div className=" bg-white bg-opacity-60 flex flex-col justify-evenly">
+          <div className="flex flex-wrap justify-center items-center py-5">
             <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              #React
+              React
             </span>
             <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              #Node
+              Node
             </span>
             <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              #Tailwind
+              Tailwind
             </span>
           </div>
+          <p>
+            The Wild Oasis is a internal cabin booking system, made for an
+            imaginary company. This was a code along project, which i took the
+            liberty to convert into typescript.
+          </p>
+          <a className="text-blue-700">Link to project</a>
         </div>
-        
-      </div>
-    </article>
+      )}
+    </div>
   );
 };
 
-
-
-const AccessAbility = () => {
+const OasisCostumer = ({
+  isExpanded,
+  toggleExpand,
+}: {
+  isExpanded: boolean;
+  toggleExpand: () => void;
+}) => {
   return (
-    <article className="relative max-w-xs rounded overflow-hidden ">
-      <div className="group relative">
-        <img
-          className="w-full h-full object-cover"
-          src={WARHAMMERIMAGE}
-          alt="Warhammer Art"
-        />
-        <div className="absolute inset-0 flex flex-col justify-between">
-          <div className="flex justify-center items-center bg-black bg-opacity-50 py-2">
-            <div className="font-bold text-xl text-center text-white">
-             Access-Ability
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-center items-center bg-black bg-opacity-50 py-2">
+    <div>
+      <h3 onClick={toggleExpand} className="font-bold text-xl cursor-pointer">
+        The Wild Oasis- Customer Page
+      </h3>
+      {isExpanded && (
+        <div>
+          <div className="flex flex-wrap justify-center items-center bg-white bg-opacity-60 py-2 ">
             <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              #React
+              React
             </span>
             <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              #Node
+              Node
             </span>
             <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              #Tailwind
+              Tailwind
+            </span>
+            <span className="inline-block bg-purple-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
+              Next.JS
             </span>
           </div>
+          <p></p>
+          <a>Link to project</a>
         </div>
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 text-black text-base px-6 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil.
-        </div>
-      </div>
-   
-    </article>
+      )}
+    </div>
   );
 };
 
-export default Projects
+export default Projects;

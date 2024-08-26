@@ -89,7 +89,7 @@ const WorkXP = () => {
              isPhone ? "bottom-0 mx-0  bg-gray-200/75" : "top-30"
            } right-0   mt-8 mx-2 flex flex-col items-evenly gap-4 ${
              showDetails
-               ? "bg-gray-300 rounded-lg p-2 "
+               ? " bg-white bg-opacity-60 rounded-lg p-2 "
                : "rounded-lg p-2 flex flex-col items-center "
            }  ${showDetails && isPhone ? "overflow-y-auto max-h-60" : ""}`}
          >
@@ -104,9 +104,15 @@ const WorkXP = () => {
              <>
                <h2 className="px-3 text-center">At the Swedish Parliament</h2>
                <ul className="m-5">
-                 <li>
-                   Experience: Lorem ipsum dolor sit amet, consectetur
-                   adipiscing elit.{" "}
+                 <li className="max-w-96">
+                   Experience: During my time at the Swedish Parliament I was
+                   taught basic IT concepts regarding security, as well as
+                   professionalism at a high level.
+                   <br />
+                   <br />
+                   Additionally, my time as a security administrator taught me
+                   how to handle and respond quickly to unexpected events that
+                   required immediate solution.{" "}
                  </li>
                  <li>Duration: August 2022 - August 2023</li>
                </ul>
@@ -123,9 +129,16 @@ const WorkXP = () => {
              <>
                <h2 className="px-3 text-center">At Chas Academy</h2>
                <ul className="m-5">
-                 <li>
-                   Experience: Lorem ipsum dolor sit amet, consectetur
-                   adipiscing elit.{" "}
+                 <li className="max-w-96">
+                   Experience: Being elected as the Student representative at
+                   Chas Academy's council came with the responsibility of taking
+                   in multiple peoples opinions in account. then systematically
+                   producing a well-versed opinion on the matter which took my
+                   fellow students voice in account. <br /> <br />
+                   This taught me how to listen well in a work environment, as
+                   well as the importance of details, and the impact of seeing
+                   seemingly small things resolved; instead of leaving them to
+                   fester.{" "}
                  </li>
                  <li>Duration: September 2023 - </li>
                </ul>
@@ -143,7 +156,7 @@ const WorkXP = () => {
                  At Chas Academy's Student Association
                </h2>
                <ul className="m-5">
-                 <li>
+                 <li className="max-w-96">
                    Experience: Lorem ipsum dolor sit amet, consectetur
                    adipiscing elit.{" "}
                  </li>
