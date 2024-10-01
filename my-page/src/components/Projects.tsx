@@ -1,7 +1,8 @@
 import Background from "../assets/PORTFOLIO.gif";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import React from "react";
+import {  useState } from "react";
+import ProjectCard from "../ui/ProjectCard";
+import Positioner from "../ui/Positioner";
 
 const Projects = () => {
   // Track which project is expanded
@@ -74,15 +75,27 @@ const Projects = () => {
           </section>
 
           <Positioner>
-            <Warhammer
+            <ProjectCard
+              title="The Library"
+              tags={["React", "Node", "Chakra"]}
+              description=""
+              linkText="Link to project"
               isExpanded={expandedProject === "Warhammer"}
               toggleExpand={() => toggleExpand("Warhammer")}
             />
-            <Oasis
+            <ProjectCard
+              title="The Wild Oasis"
+              tags={["React", "Node", "Tailwind"]}
+              description="The Wild Oasis is an internal cabin booking system, built for an imaginary company. Originally a code-along project, I took the liberty to convert it into TypeScript."
+              linkText="Link to project"
               isExpanded={expandedProject === "Oasis"}
               toggleExpand={() => toggleExpand("Oasis")}
             />
-            <OasisCostumer
+            <ProjectCard
+              title="The Wild Oasis - Customer Page"
+              tags={["React", "Node", "Tailwind", "Next.js"]}
+              description=""
+              linkText="Link to project"
               isExpanded={expandedProject === "OasisCustomer"}
               toggleExpand={() => toggleExpand("OasisCustomer")}
             />
@@ -93,139 +106,6 @@ const Projects = () => {
   );
 };
 
-function Positioner({ children }: { children: React.ReactNode }) {
-  const [isPhone, setIsPhone] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsPhone(window.innerWidth < 600);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  return (
-    <div
-      className={`${
-        isPhone
-          ? "absolute flex flex-col gap-4 items-center left-4 right-4 bottom-2 overflow-y-auto max-h-1/2"
-          : "absolute flex flex-col gap-10 right-4 top-4"
-      }`}
-    >
-      {children}
-    </div>
-  );
-}
-
-const Warhammer = ({
-  isExpanded,
-  toggleExpand,
-}: {
-  isExpanded: boolean;
-  toggleExpand: () => void;
-}) => {
-  return (
-    <div>
-      <h3 onClick={toggleExpand} className="font-bold text-xl cursor-pointer">
-        The Library
-      </h3>
-      {isExpanded && (
-        <div>
-          <div className="flex flex-wrap justify-center items-center bg-white bg-opacity-60 py-2 ">
-            <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              React
-            </span>
-            <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              Node
-            </span>
-            <span className="inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              Chakra
-            </span>
-          </div>
-          <p></p>
-          <a>Link to project</a>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const Oasis = ({
-  isExpanded,
-  toggleExpand,
-}: {
-  isExpanded: boolean;
-  toggleExpand: () => void;
-}) => {
-  return (
-    <div>
-      <h3 onClick={toggleExpand} className="font-bold text-xl cursor-pointer">
-        The Wild Oasis
-      </h3>
-      {isExpanded && (
-        <div className=" bg-white bg-opacity-60 flex flex-col justify-evenly">
-          <div className="flex flex-wrap justify-center items-center py-5">
-            <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              React
-            </span>
-            <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              Node
-            </span>
-            <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              Tailwind
-            </span>
-          </div>
-          <p>
-            The Wild Oasis is a internal cabin booking system, made for an
-            imaginary company. This was a code along project, which i took the
-            liberty to convert into typescript.
-          </p>
-          <a className="text-blue-700">Link to project</a>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const OasisCostumer = ({
-  isExpanded,
-  toggleExpand,
-}: {
-  isExpanded: boolean;
-  toggleExpand: () => void;
-}) => {
-  return (
-    <div>
-      <h3 onClick={toggleExpand} className="font-bold text-xl cursor-pointer">
-        The Wild Oasis- Customer Page
-      </h3>
-      {isExpanded && (
-        <div>
-          <div className="flex flex-wrap justify-center items-center bg-white bg-opacity-60 py-2 ">
-            <span className="inline-block bg-blue-400 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              React
-            </span>
-            <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              Node
-            </span>
-            <span className="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              Tailwind
-            </span>
-            <span className="inline-block bg-purple-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-1">
-              Next.JS
-            </span>
-          </div>
-          <p></p>
-          <a>Link to project</a>
-        </div>
-      )}
-    </div>
-  );
-};
 
 export default Projects;

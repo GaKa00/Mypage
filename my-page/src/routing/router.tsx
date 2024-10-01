@@ -5,6 +5,7 @@ import Projects from "../components/Projects";
 import WorkXP from "../components/WorkXP";
 import About from "../components/AboutMe";
 import ErrorPage from "../components/Errorpage";
+import ContactPage from "../components/ContactPage";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/contact",
-    element: <div>Hello world!</div>,
+    element: <ContactPage/>,
     errorElement: <ErrorPage />,
   },
 ]);

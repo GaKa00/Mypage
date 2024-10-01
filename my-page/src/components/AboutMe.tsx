@@ -1,6 +1,8 @@
 import { useLocation, Link } from 'react-router-dom';
 import Background from '../assets/PORTFOLIO.gif'
 
+import PositionerCenter from '../ui/PositionerCenter';
+
 const About = () => {
   const location = useLocation();
 
@@ -62,45 +64,36 @@ const isActive = (path: string) => location.pathname === path;
               </Link>
             </ul>
           </section>
+        <PositionerCenter>
 
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center border-black bg-slate-200  z-9">
-            <h2 className="font-bold text-4xl">About me</h2>
-
-            <div className=" flex  gap-10 m-8">
-              <div className="">
-                <h3 className="text-center">Hobbies</h3>
-                <p className="max-w-64">
-                  {" "}
-                  During the time which I do not code, I tend to frequent the
-                  gym. I am also a bit of a home cook, often experimenting which
-                  may lead to a varied result of delicious dinners, or dumpster
-                  fodder. I also practice juggling, as well as host my own
-                  Dungeons and Dragons campaign. I am a massive fantasy enjoyer
-                  with my favorite franshices including such as Warhammer 40K,
-                  The Witcher and Game of Thrones.{" "}
-                </p>
-              </div>
-
-              <div className="">
-                <h3 className="text-center">Qualities</h3>
-                <p className="max-w-64">
-                  {" "}
-                  As a developer in training, my passion for coding is like a
-                  sponge, with a constant wish to prove and better myself. This
-                  is not to be mistaken for brazen rashness though, as my
-                  earlier positions at managemental roles has taught me
-                  discipline and the value of teamwork. I am not afraid to take
-                  risks, but attempt to remain well aware of my limits and seek
-                  out a more qualified opinion if such is the case.{" "}
-                </p>
-              </div>
-
-              <div className="">
-                <h3>Skillset</h3>
-                <p></p>
-              </div>
+          <div className="flex flex-col items-center justify-center bg-slate-100 opacity-90 shadow-xl max-w-screen-lg rounded-lg  p-6 z-10">
+            <h2 className="font-bold text-2xl sm:text-4xl mb-4 text-gray-800">
+              About Me
+            </h2>
+            <div className="text-center">
+              <p className="text-base sm:text-lg leading-relaxed text-gray-700 mb-4 sm:mb-6">
+                Hello, and welcome to my page! My name is Gabriel, a Junior
+                Fullstack Developer based in Stockholm, Sweden. I am 24 years
+                old, and I enjoy cooking, watching horror movies, and immersing
+                myself in fantasy and sci-fi media like Warhammer, Lord of the
+                Rings, and Dungeons & Dragons.
+              </p>
+              <p className="text-base sm:text-lg leading-relaxed text-gray-700 mb-4 sm:mb-6">
+                Both in my professional and personal life, I am known for
+                getting things done. I embrace challenges with a positive
+                attitude and a willingness to learn from my mistakes. Although I
+                am a junior developer, I am always eager to tackle new problems
+                and grow my skills.
+              </p>
+              <p className="font-bold text-gray-800 text-base sm:text-lg">
+                I look forward to working with you!
+              </p>
+              <p className="mt-2 text-gray-600 text-sm sm:text-base">
+                // Gabriel
+              </p>
             </div>
           </div>
+        </PositionerCenter>
         </div>
       </main>
     </div>
