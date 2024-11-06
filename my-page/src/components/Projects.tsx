@@ -1,17 +1,27 @@
 import Background from "../assets/PORTFOLIO.gif";
 import { Link, useLocation } from "react-router-dom";
-import {  useState } from "react";
-import ProjectCard from "../ui/ProjectCard";
 import Positioner from "../ui/Positioner";
+import Carousel from "../ui/Carousel2";
+import { useEffect, useState } from "react";
+import ProjectCard from "../ui/ProjectCard";
 
 const Projects = () => {
-  // Track which project is expanded
-  const [expandedProject, setExpandedProject] = useState<string | null>(null);
 
-  // Handle project expansion/collapse
-  const toggleExpand = (projectId: string) => {
-    setExpandedProject((prev) => (prev === projectId ? null : projectId));
+
+   const [isPhone, setIsPhone] = useState(false);
+useEffect(() => {
+  const handleResize = () => {
+    setIsPhone(window.innerWidth < 600);
   };
+
+  handleResize();
+  window.addEventListener("resize", handleResize);
+
+  return () => {
+    window.removeEventListener("resize", handleResize);
+  };
+}, []);
+
 
   const location = useLocation();
   const isActive = (path: string) => location.pathname === path;
@@ -74,32 +84,61 @@ const Projects = () => {
             </ul>
           </section>
 
-          <Positioner>
-            <ProjectCard
-              title="The Library"
-              tags={["React", "Node", "Chakra"]}
-              description=""
-              linkText="Link to project"
-              isExpanded={expandedProject === "Warhammer"}
-              toggleExpand={() => toggleExpand("Warhammer")}
-            />
-            <ProjectCard
-              title="The Wild Oasis"
-              tags={["React", "Node", "Tailwind"]}
-              description="The Wild Oasis is an internal cabin booking system, built for an imaginary company. Originally a code-along project, I took the liberty to convert it into TypeScript."
-              linkText="Link to project"
-              isExpanded={expandedProject === "Oasis"}
-              toggleExpand={() => toggleExpand("Oasis")}
-            />
-            <ProjectCard
-              title="The Wild Oasis - Customer Page"
-              tags={["React", "Node", "Tailwind", "Next.js"]}
-              description=""
-              linkText="Link to project"
-              isExpanded={expandedProject === "OasisCustomer"}
-              toggleExpand={() => toggleExpand("OasisCustomer")}
-            />
-          </Positioner>
+          {isPhone ? (
+            <Carousel />
+          ) : (
+            <Positioner>
+              <ProjectCard
+                title="The Library"
+                tags={["React", "Node", "Chakra"]}
+                description="The Library is  a Fullstack Application built with React in the Frontend, and Node in the backend.  A mix of Chakra and Tailwind was used for styling. The app is meant for  Warhammer Readers, to easily track what books they have read, as well as save their own quotes and summaries from their favourite books in one place."
+                linkText="Link to project"
+                linkGit="https://github.com/GaKa00/40kcompanion"
+              />
+              {/* <ProjectCard
+                title="The Library"
+                tags={["React", "Node", "Chakra"]}
+                description=""
+                linkText="Link to project"
+              />
+              <ProjectCard
+                title="The Library"
+                tags={["React", "Node", "Chakra"]}
+                description=""
+                linkText="Link to project"
+              />
+              <ProjectCard
+                title="The Library"
+                tags={["React", "Node", "Chakra"]}
+                description=""
+                linkText="Link to project"
+              />
+              <ProjectCard
+                title="The Library"
+                tags={["React", "Node", "Chakra"]}
+                description=""
+                linkText="Link to project"
+              />
+              <ProjectCard
+                title="The Library"
+                tags={["React", "Node", "Chakra"]}
+                description=""
+                linkText="Link to project"
+              />
+              <ProjectCard
+                title="The Library"
+                tags={["React", "Node", "Chakra"]}
+                description=""
+                linkText="Link to project"
+              />
+              <ProjectCard
+                title="The Library"
+                tags={["React", "Node", "Chakra"]}
+                description=""
+                linkText="Link to project"
+              /> */}
+            </Positioner>
+          )}
         </div>
       </main>
     </div>
